@@ -1,0 +1,139 @@
+public class MainActivity extends AppCompatActivity {
+
+    TextView tv,tv1,tv2;
+    EditText et1;
+    EditText et2;
+    Button bt1;
+    Button bt2;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tv=findViewById(R.id.textView7);
+        //tv.setText("Paradise On your wheels");
+        tv1=findViewById(R.id.textView8);
+        //tv1.setText("Eat and relish your hunger.Quality bood available at your doorsteps.All varieties of food available.Accepts all modes of payment also open for home delivery");
+        tv2=findViewById(R.id.textView11);
+        //tv2.setText("Contact no");
+        et1=findViewById(R.id.editText10);
+        et2=findViewById(R.id.editText11);
+        bt1=findViewById(R.id.button5);
+        bt2=findViewById(R.id.button4);
+        bt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                Toast.makeText(MainActivity.this, "Our website is visited", Toast.LENGTH_SHORT).show();
+                Intent myWebLink = new Intent(android.content.Intent.ACTION_VIEW);
+                myWebLink.setData(Uri.parse("https://www.freshmenu.com/"));
+                startActivity(myWebLink);
+
+
+            }
+        });
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2=new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent2);
+                Toast.makeText(MainActivity.this, "move to next page", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+    }
+}
+
+
+---------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx---------------------------------------
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pasta">
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="351dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:text="Paradise On Your plate"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="344dp"
+        android:layout_height="135dp"
+        android:layout_below="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:text="Eat and relish your hunger.Quality food available at your doorsteps.All varieties of food available."
+        android:textColor="?android:attr/colorPrimaryDark"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/editText10"
+        android:layout_width="184dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView8"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="222dp"
+        android:ems="10"
+        android:inputType="phone"
+        android:hint="enter your number" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="159dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/editText10"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="11dp"
+        android:text="Contact Number"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="122dp"
+        android:ems="10"
+        android:hint="please enter your address"
+        android:inputType="textPostalAddress"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="-204dp"
+        android:layout_toStartOf="@+id/editText10"
+        android:text="Click here to place order" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="152dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView11"
+        android:layout_alignTop="@+id/button4"
+        android:text="Click here to view our website" />
+
+</RelativeLayout>

@@ -1,0 +1,133 @@
+public class Main7Activity extends AppCompatActivity {
+    TextView t1, t2,t3;
+    Button b1,b2;
+    Button button;
+    int x=0,y=0,bill=0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main7);
+        t1 = findViewById(R.id.textView22);
+        t2 = findViewById(R.id.textView23);
+        t3=findViewById(R.id.textView14);
+        b1 = findViewById(R.id.button20);
+        button = findViewById(R.id.button);
+        b2=findViewById(R.id.button11);
+        bill=getIntent().getIntExtra("bill3",0);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Main7Activity.this,"coke is added to cart",Toast.LENGTH_SHORT).show();
+                x=15;
+            }
+        });
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Main7Activity.this,"Crusher is added to cart",Toast.LENGTH_SHORT).show();
+                y=60;
+            }
+        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Main7Activity.this, "Generate bill", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(Main7Activity.this, Main8Activity.class);
+                int bills=x+y+bill;
+                intent.putExtra("bill4",bills);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+}
+
+
+-------------------------------------------------------xxxxxxxxxxxxxxxxxxxxxxxxxxxx-----------------------------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main7Activity">
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="17dp"
+        android:text="Bevereges"
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="215dp"
+        android:layout_height="164dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView22"
+        app:srcCompat="@mipmap/coke" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="116dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="75dp"
+        android:text="Coke" />
+
+    <Button
+        android:id="@+id/button20"
+        android:layout_width="125dp"
+        android:layout_height="65dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="127dp"
+        android:text="Rs 15 added to cart" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="206dp"
+        android:layout_height="209dp"
+        android:layout_alignEnd="@+id/imageView9"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="96dp"
+        app:srcCompat="@mipmap/crusher" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="164dp"
+        android:layout_height="62dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="generate bill" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_marginBottom="236dp"
+        android:text="Crusher" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="121dp"
+        android:layout_height="61dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_marginBottom="128dp"
+        android:text="Rs60 add to cart" />
+
+</android.widget.RelativeLayout>

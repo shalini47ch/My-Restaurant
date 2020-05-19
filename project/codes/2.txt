@@ -1,0 +1,131 @@
+public class Main2Activity extends AppCompatActivity {
+    EditText username,password;
+    Button log,signin;
+    TextView tv1;
+    SQLiteDatabase db;
+    int f=0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main2);
+        username = findViewById(R.id.editText2);
+        password =findViewById(R.id.editText3);
+        log = findViewById(R.id.button);
+        signin =findViewById(R.id.button2);
+        tv1 = findViewById(R.id.textView2);
+        db=openOrCreateDatabase("customer",MODE_PRIVATE,null);
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String query = "select * from customer";
+                Cursor cursor = db.rawQuery(query, null);
+                while (cursor.moveToNext()) {
+                    String nm = cursor.getString(0);
+                    String ps = cursor.getString(2);
+                    if (username.getText().toString().equals(nm) && password.getText().toString().equals(ps)) {
+                        Toast.makeText(Main2Activity.this, "user and password is correct", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Main2Activity.this, Main4Activity.class);
+                        startActivity(intent);
+                        f=1;
+                    }
+                    }
+                    if(f==0)
+                    {
+
+                        Toast.makeText(Main2Activity.this, "user and password not correct", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+        });
+        signin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(Main2Activity.this, "move to signin page", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(Main2Activity.this,signin1.class);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+}
+
+
+
+-------------------xxxxxxxxxxxxxxxxxxxxx-----------------------------xxxxxxxxxxxxxxxxxxxxxxxx-----------------------------------
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pasta"
+    tools:context=".Main2Activity">
+
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="227dp"
+        android:layout_height="52dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="56dp"
+        android:text="PARADISE ON YOUR PLATE"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/editText3"
+        android:layout_marginTop="165dp"
+
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="UserName" />
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="69dp"
+        android:ems="10"
+        android:hint="enter your password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="113dp"
+        android:layout_height="43dp"
+
+        android:layout_alignBottom="@+id/button2"
+
+
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="61dp"
+        android:background="#cfffff"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="119dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginBottom="118dp"
+        android:layout_marginEnd="54dp"
+        android:text="SignIn" />
+</RelativeLayout>
